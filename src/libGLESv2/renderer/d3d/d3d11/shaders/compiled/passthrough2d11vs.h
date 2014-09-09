@@ -32,6 +32,9 @@ ret
 // Approximately 4 instruction slots used
 #endif
 
+#ifndef g_VS_Passthrough2D_H_
+#define g_VS_Passthrough2D_H_
+
 const BYTE g_VS_Passthrough2D[] =
 {
      68,  88,  66,  67, 197, 214, 
@@ -132,3 +135,5 @@ const BYTE g_VS_Passthrough2D[] =
       0,   0,   0,   0,   0,   0, 
       0,   0,   0,   0
 };
+
+#endif

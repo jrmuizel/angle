@@ -37,6 +37,9 @@ ret
 // Approximately 2 instruction slots used
 #endif
 
+#ifndef g_PS_PassthroughRGBA2D_H_
+#define g_PS_PassthroughRGBA2D_H_
+
 const BYTE g_PS_PassthroughRGBA2D[] =
 {
      68,  88,  66,  67, 185, 246, 
@@ -139,3 +142,5 @@ const BYTE g_PS_PassthroughRGBA2D[] =
       0,   0,   0,   0,   0,   0, 
       0,   0,   0,   0
 };
+
+#endif

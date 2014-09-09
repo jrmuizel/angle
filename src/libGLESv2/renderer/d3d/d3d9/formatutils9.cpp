@@ -41,7 +41,7 @@ struct D3D9FastCopyFormat
 
 typedef std::multimap<D3DFORMAT, D3D9FastCopyFormat> D3D9FastCopyMap;
 
-static D3D9FastCopyMap BuildFastCopyMap()
+static D3D9FastCopyMap BuildFastCopyMap9()
 {
     D3D9FastCopyMap map;
 
@@ -82,7 +82,7 @@ static inline void InsertD3DFormatInfo(D3D9FormatInfoMap *map, D3DFORMAT format,
     info.mipGenerationFunction = mipFunc;
     info.colorReadFunction = colorReadFunc;
 
-    static const D3D9FastCopyMap fastCopyMap = BuildFastCopyMap();
+    static const D3D9FastCopyMap fastCopyMap = BuildFastCopyMap9();
     std::pair<D3D9FastCopyMap::const_iterator, D3D9FastCopyMap::const_iterator> fastCopyIter = fastCopyMap.equal_range(format);
     for (D3D9FastCopyMap::const_iterator i = fastCopyIter.first; i != fastCopyIter.second; i++)
     {

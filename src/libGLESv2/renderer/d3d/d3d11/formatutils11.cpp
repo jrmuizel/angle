@@ -118,7 +118,7 @@ struct D3D11FastCopyFormat
 
 typedef std::multimap<DXGI_FORMAT, D3D11FastCopyFormat> D3D11FastCopyMap;
 
-static D3D11FastCopyMap BuildFastCopyMap()
+static D3D11FastCopyMap BuildFastCopyMap11()
 {
     D3D11FastCopyMap map;
 
@@ -231,7 +231,7 @@ void AddDXGIFormat(DXGIFormatInfoMap *map, DXGI_FORMAT dxgiFormat, GLuint pixelB
     info.mipGenerationFunction = mipFunc;
     info.colorReadFunction = readFunc;
 
-    static const D3D11FastCopyMap fastCopyMap = BuildFastCopyMap();
+    static const D3D11FastCopyMap fastCopyMap = BuildFastCopyMap11();
     std::pair<D3D11FastCopyMap::const_iterator, D3D11FastCopyMap::const_iterator> fastCopyIter = fastCopyMap.equal_range(dxgiFormat);
     for (D3D11FastCopyMap::const_iterator i = fastCopyIter.first; i != fastCopyIter.second; i++)
     {

@@ -117,8 +117,8 @@ static D3D9FormatMap BuildD3D9FormatMap()
 
     // These formats require checking if the renderer supports D3DFMT_L8 or D3DFMT_A8L8 and
     // then changing the format and loading function appropriately.
-    map.insert(D3D9FormatPair(GL_LUMINANCE8_EXT,                   D3D9FormatInfo(D3DFMT_L8,            D3DFMT_UNKNOWN,        loadToNative<GLubyte, 1>                  )));
-    map.insert(D3D9FormatPair(GL_LUMINANCE8_ALPHA8_EXT,            D3D9FormatInfo(D3DFMT_A8L8,          D3DFMT_UNKNOWN,        loadToNative<GLubyte, 2>                  )));
+    map.insert(D3D9FormatPair(GL_LUMINANCE8_EXT,                   D3D9FormatInfo(D3DFMT_L8,            D3DFMT_L8,             loadToNative<GLubyte, 1>                  )));
+    map.insert(D3D9FormatPair(GL_LUMINANCE8_ALPHA8_EXT,            D3D9FormatInfo(D3DFMT_A8L8,          D3DFMT_A8L8,           loadToNative<GLubyte, 2>                  )));
 
     return map;
 }

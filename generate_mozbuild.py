@@ -75,6 +75,8 @@ FINAL_LIBRARY = 'gkmedias'
 
 LOCAL_INCLUDES += [ '../../include', '../../src', '../../src/third_party/khronos' ]
 
+DEFINES['LIBANGLE_IMPLEMENTATION'] = "1"
+
 if CONFIG['MOZ_HAS_WINSDK_WITH_D3D']:
   OS_LIBS += [ 'd3d9', 'dxguid' ]
 else:
@@ -99,8 +101,19 @@ if CONFIG['MOZ_HAS_WINSDK_WITH_D3D']:
 #
   'libEGL': """
 
-LOCAL_INCLUDES += [ '../../include', '../../src' ]
+LOCAL_INCLUDES += [ '../../include', '../../src', '../../src/third_party/khronos' ]
 USE_LIBS += [ 'libGLESv2' ]
+
+DEFINES['LIBANGLE_IMPLEMENTATION'] = "1"
+
+if CONFIG['MOZ_HAS_WINSDK_WITH_D3D']:
+  OS_LIBS += [ 'd3d9', 'dxguid' ]
+else:
+  EXTRA_DSO_LDOPTS += [
+    '\\'%s/lib/%s/d3d9.lib\\'' % (CONFIG['MOZ_DIRECTX_SDK_PATH'], CONFIG['MOZ_D3D_CPU_SUFFIX']),
+    '\\'%s/lib/%s/dxguid.lib\\'' % (CONFIG['MOZ_DIRECTX_SDK_PATH'], CONFIG['MOZ_D3D_CPU_SUFFIX']),
+  ]
+
 
 GeckoSharedLibrary('libEGL', linkage=None)
 
@@ -162,6 +175,7 @@ def generate_platform_sources(target=None):
 
     f = open('sources.json');
     s = set(map(lambda x: "src/" + x, json.load(f)))
+    print s
     sources[plat] = s
     f.close()
 

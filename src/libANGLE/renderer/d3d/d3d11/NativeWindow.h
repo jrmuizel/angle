@@ -39,8 +39,10 @@ using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
 
 #else
+#ifdef ANGLE_ENABLE_D3D11
 typedef IDXGISwapChain DXGISwapChain;
 typedef IDXGIFactory DXGIFactory;
+#endif
 #endif
 
 namespace rx
@@ -56,9 +58,11 @@ class NativeWindow
     bool isIconic();
     static bool isValidNativeWindow(EGLNativeWindowType window);
 
+#ifdef ANGLE_ENABLE_D3D11
     HRESULT createSwapChain(ID3D11Device* device, DXGIFactory* factory,
                             DXGI_FORMAT format, UINT width, UINT height,
                             DXGISwapChain** swapChain);
+#endif
 
     inline EGLNativeWindowType getNativeWindow() const { return mWindow; }
 

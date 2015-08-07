@@ -273,7 +273,7 @@ void GL_APIENTRY BlendColor(GLclampf red, GLclampf green, GLclampf blue, GLclamp
     Context *context = GetValidGlobalContext();
     if (context)
     {
-        context->getState().setBlendColor(clamp01(red), clamp01(green), clamp01(blue), clamp01(alpha));
+        context->getState().setBlendColor(red, green, blue, alpha);
     }
 }
 
@@ -743,7 +743,7 @@ void GL_APIENTRY CompressedTexImage2D(GLenum target, GLint level, GLenum interna
 
         Extents size(width, height, 1);
         Texture *texture = context->getTargetTexture(IsCubeMapTextureTarget(target) ? GL_TEXTURE_CUBE_MAP : target);
-        Error error = texture->setCompressedImage(target, level, internalformat, size, context->getState().getUnpackState(), 
+        Error error = texture->setCompressedImage(target, level, internalformat, size, context->getState().getUnpackState(),
                                                   imageSize, reinterpret_cast<const uint8_t *>(data));
         if (error.isError())
         {

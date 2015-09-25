@@ -128,6 +128,7 @@ void ProgramImpl::reset()
     std::fill(mSemanticIndex, mSemanticIndex + ArraySize(mSemanticIndex), -1);
     SafeDeleteContainer(mUniforms);
     mUniformIndex.clear();
+    mShaderAttributes.clear();
     SafeDeleteContainer(mUniformBlocks);
     mTransformFeedbackLinkedVaryings.clear();
 }

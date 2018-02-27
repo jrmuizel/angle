@@ -29,4 +29,5 @@ build: false
 
 test_script:
   - gn gen out/Release
-  - ninja -C out/Release  
+  - ninja -C out/Release
+  - dir -s out/Release

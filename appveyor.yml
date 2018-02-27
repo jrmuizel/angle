@@ -1,0 +1,34 @@
+version: '{build}'
+
+image: Visual Studio 2017
+
+platform:
+  - Win32
+
+# Use the source dir expected by gclient.
+clone_folder: c:\projects\angle\src
+
+# Before checkout.
+init:
+  - cd %APPVEYOR_BUILD_FOLDER%\..\..
+  - appveyor DownloadFile https://storage.googleapis.com/chrome-infra/depot_tools.zip
+  - 7z -bd x depot_tools.zip -odepot_tools
+  - depot_tools\update_depot_tools
+  - cd %APPVEYOR_BUILD_FOLDER%
+
+# After checkout.
+install:
+  - PATH C:\projects\depot_tools;%PATH%
+  - python scripts/bootstrap.py
+  - gclient sync
+
+build: false
+
+test_script:
+  - gn gen out/Debug
+  - cd webrender_api
+  - cargo test --verbose
+  - cd ../webrender
+  - cargo test --verbose
+  - cd ../wrench
+  - cargo test --verbose

@@ -5,6 +5,9 @@ image: Visual Studio 2017
 platform:
   - Win32
 
+environment:
+  DEPOT_TOOLS_WIN_TOOLCHAIN: 0
+
 # Use the source dir expected by gclient.
 clone_folder: c:\projects\angle\src
 

@@ -35,4 +35,5 @@ test_script:
   - gn gen out/Release --args="is_debug=false"
   - ninja -C out/Release
   - dir -s out\Release
+  - out\Release\angle_end2end_tests.exe
   - 7z a angle.zip out\Release\gen\*.dll

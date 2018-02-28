@@ -27,7 +27,12 @@ install:
 
 build: false
 
+artifacts:
+  - path: angle.zip
+    name: Angle
+
 test_script:
   - gn gen out/Release --args="is_debug=false"
   - ninja -C out/Release
   - dir -s out\Release
+  - 7z a angle.zip out\Release\gen\*.dll
